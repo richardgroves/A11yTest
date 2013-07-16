@@ -27,7 +27,7 @@
 	dn.accessibilityIdentifier = @"some text";
 	
 	NSLog(@"Test-a11y A: %@", dn.isAccessibilityElement ? @"YES" : @"NO");
-	dn.isAccessibilityElement = NO; // Going to add the day name to the location name to make one item
+	dn.isAccessibilityElement = NO; // But it wont be honoured when the bug is active (MessageUI framework, iOS6 simulator + a11y inspector etc)
 	NSLog(@"Test-a11y B: %@", dn.isAccessibilityElement ? @"YES" : @"NO");
 	dn.accessibilityIdentifier = nil;
 	NSLog(@"Test-a11y C: %@", dn.isAccessibilityElement ? @"YES" : @"NO");
