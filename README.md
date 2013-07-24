@@ -1,7 +1,7 @@
 A11yTest
 ========
 
-Part 1
+**Part 1**
 
 Accessibility code test - demonstrates a problem with setIsAccessibilityElement in iOS6
 
@@ -20,7 +20,7 @@ Hypothesis - there is a category in the MessageUI framework that overrides the s
 
 Result: Confirmed by Chris Fleizach (cfleizach@apple.com) on the Apple Accessibility Dev mailing list, 16Jul13, that this is a bug caused by having MessageUI.framework linked in.
 
-Part 2
+**Part 2**
 
 Creates a view hierarchy that replicates what we have in the BBC Weather app for each location to demonstrate the problem with not being able to access the later hourly slots with the VO swipe once there are more than a certain number of views in the 'container'
 
