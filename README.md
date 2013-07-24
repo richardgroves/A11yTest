@@ -33,6 +33,6 @@ Cycle rightwards to go through the 'hourly' columns
 End of list indicator is triggered after just a few columns - rest are unreachable
 
 
-Comment out line 98 (#define of USE_LOTS_OF_COLUMNS) of ViewController.m to reduce the number of columns below the problem threshold.
+Comment out line 92 (#define of USE_LOTS_OF_COLUMNS) of ViewController.m to reduce the number of columns below the problem threshold.
 Re-do the above test - can now cycle through the pages and get to the 'Day tab' label in the end as intended.
 
