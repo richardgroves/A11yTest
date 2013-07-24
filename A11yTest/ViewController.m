@@ -55,14 +55,8 @@ const int kTagDetailSlotBase = 10;
 	// Test of how many a11y elements we can have using the UIAccessibilityContainer informal protocol
 	// Trying to work out why the weather app list stops progressing properly when >12 hourly slots (about 25 views)
 	
-	
-	//	CGRect sv1 = CGRectMake(dayView.bounds.size.width, 50, self.view.frame.size.width, self.view.frame.size.height*0.5f);
-	//	A11yTestNumElementsView* aView = [[A11yTestNumElementsView alloc] initWithFrame:sv1];
-	//	aView.backgroundColor = [UIColor lightGrayColor];
-	//	[self.view addSubview:aView];
-	
 	// Replicate day view hierarchy
-	// Main view -> day view -> summary page + detailViewContainer -> N * hourly slots
+	// Main view -> label + (day view -> summary page + detailViewContainer -> N * hourly slots) + tab view
 	
 	// Basic location label - first in a11y ordering 
 	UILabel* locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 150, 30)];
@@ -95,10 +89,10 @@ const int kTagDetailSlotBase = 10;
 
 	// Hourly slots equivalents - several pages of columns
 
-#define USE_LOTS_COLUMNS 1
+#define USE_LOTS_OF_COLUMNS 1
 	
 	// Total a11y elements in the scene is 3 + num columns
-#ifdef USE_LOTS_COLUMNS
+#ifdef USE_LOTS_OF_COLUMNS
 	const int numCols = 24; // At 24 we can't even get to the end of the first page!
 #else
 	const int numCols = 10; // At 10 it works fine - cycles through multiple pages, ends up on Day tabs label

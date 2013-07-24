@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 NoodlFroot Ltd. All rights reserved.
 //
 
+// UIView subclass that implements the UIAccessibilityContainer protocol by trapping add/remove subview to scan the added items
+// Also has a manual re-scan method for when the user of the view knows the internal state has changed
+
 #import "A11yContainer.h"
 
 @interface A11yContainer ()
