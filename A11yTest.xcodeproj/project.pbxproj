@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		793EDCCA17957EAD0051F854 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 793EDCC917957EAD0051F854 /* MessageUI.framework */; };
+		793EDCD217998CF90051F854 /* A11yContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 793EDCD117998CF90051F854 /* A11yContainer.m */; };
+		795A86E4179FF50300FAD515 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 795A86E3179FF50300FAD515 /* MessageUI.framework */; };
 		79B5A44A178C461E0096B963 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B5A449178C461E0096B963 /* UIKit.framework */; };
 		79B5A44C178C461E0096B963 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B5A44B178C461E0096B963 /* Foundation.framework */; };
-		79B5A44E178C461E0096B963 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B5A44D178C461E0096B963 /* CoreGraphics.framework */; };
 		79B5A454178C461E0096B963 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79B5A452178C461E0096B963 /* InfoPlist.strings */; };
 		79B5A456178C461E0096B963 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B5A455178C461E0096B963 /* main.m */; };
 		79B5A45A178C461E0096B963 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B5A459178C461E0096B963 /* AppDelegate.m */; };
@@ -18,18 +18,15 @@
 		79B5A45E178C461E0096B963 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79B5A45D178C461E0096B963 /* Default@2x.png */; };
 		79B5A460178C461E0096B963 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 79B5A45F178C461E0096B963 /* Default-568h@2x.png */; };
 		79B5A463178C461E0096B963 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B5A462178C461E0096B963 /* ViewController.m */; };
-		79B5A466178C461E0096B963 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B5A464178C461E0096B963 /* ViewController.xib */; };
-		79DC25CF178DAE5800A56A0B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DC25CE178DAE5800A56A0B /* Security.framework */; };
-		79DC25D1178DAE7800A56A0B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79DC25D0178DAE7800A56A0B /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6068e12bcdc9070ca77f1f2c /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		793EDCC917957EAD0051F854 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		793EDCD017998CF90051F854 /* A11yContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A11yContainer.h; sourceTree = "<group>"; };
+		793EDCD117998CF90051F854 /* A11yContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A11yContainer.m; sourceTree = "<group>"; };
+		795A86E3179FF50300FAD515 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		79B5A446178C461E0096B963 /* A11yTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = A11yTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B5A449178C461E0096B963 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		79B5A44B178C461E0096B963 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		79B5A44D178C461E0096B963 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		79B5A451178C461E0096B963 /* A11yTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "A11yTest-Info.plist"; sourceTree = "<group>"; };
 		79B5A453178C461E0096B963 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		79B5A455178C461E0096B963 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -41,9 +38,6 @@
 		79B5A45F178C461E0096B963 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		79B5A461178C461E0096B963 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		79B5A462178C461E0096B963 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		79B5A465178C461E0096B963 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		79DC25CE178DAE5800A56A0B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		79DC25D0178DAE7800A56A0B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,12 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79DC25CF178DAE5800A56A0B /* Security.framework in Frameworks */,
-				793EDCCA17957EAD0051F854 /* MessageUI.framework in Frameworks */,
-				79DC25D1178DAE7800A56A0B /* SystemConfiguration.framework in Frameworks */,
+				795A86E4179FF50300FAD515 /* MessageUI.framework in Frameworks */,
 				79B5A44A178C461E0096B963 /* UIKit.framework in Frameworks */,
 				79B5A44C178C461E0096B963 /* Foundation.framework in Frameworks */,
-				79B5A44E178C461E0096B963 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,13 +74,9 @@
 		79B5A448178C461E0096B963 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				793EDCC917957EAD0051F854 /* MessageUI.framework */,
-				79DC25D0178DAE7800A56A0B /* SystemConfiguration.framework */,
-				79DC25CE178DAE5800A56A0B /* Security.framework */,
+				795A86E3179FF50300FAD515 /* MessageUI.framework */,
 				79B5A449178C461E0096B963 /* UIKit.framework */,
 				79B5A44B178C461E0096B963 /* Foundation.framework */,
-				79B5A44D178C461E0096B963 /* CoreGraphics.framework */,
-				6068e12bcdc9070ca77f1f2c /* CFNetwork.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -101,7 +88,8 @@
 				79B5A459178C461E0096B963 /* AppDelegate.m */,
 				79B5A461178C461E0096B963 /* ViewController.h */,
 				79B5A462178C461E0096B963 /* ViewController.m */,
-				79B5A464178C461E0096B963 /* ViewController.xib */,
+				793EDCD017998CF90051F854 /* A11yContainer.h */,
+				793EDCD117998CF90051F854 /* A11yContainer.m */,
 				79B5A450178C461E0096B963 /* Supporting Files */,
 			);
 			path = A11yTest;
@@ -176,7 +164,6 @@
 				79B5A45C178C461E0096B963 /* Default.png in Resources */,
 				79B5A45E178C461E0096B963 /* Default@2x.png in Resources */,
 				79B5A460178C461E0096B963 /* Default-568h@2x.png in Resources */,
-				79B5A466178C461E0096B963 /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +177,7 @@
 				79B5A456178C461E0096B963 /* main.m in Sources */,
 				79B5A45A178C461E0096B963 /* AppDelegate.m in Sources */,
 				79B5A463178C461E0096B963 /* ViewController.m in Sources */,
+				793EDCD217998CF90051F854 /* A11yContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,14 +190,6 @@
 				79B5A453178C461E0096B963 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		79B5A464178C461E0096B963 /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				79B5A465178C461E0096B963 /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
