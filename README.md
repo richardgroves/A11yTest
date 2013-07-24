@@ -18,7 +18,7 @@ The 'problem' can be removed by removing the MessageUI.framework from the projec
 
 Hypothesis - there is a category in the MessageUI framework that overrides the setting of accessibility protocol methods and makes the isAccessibilityElement value of UILabel (at least) be OR'ed with (accessibilityIdentifier != nil)
 
-Result: Confirmed by Chris Fleizach on the Apple Accessibility Dev mailing list, 16 Jul 2013, that this is a bug caused by having MessageUI.framework linked in.
+**Result:** Confirmed by Chris Fleizach on the Apple Accessibility Dev mailing list, 16 Jul 2013, that this is a bug caused by having MessageUI.framework linked in.
 
 **Part 2**
 
