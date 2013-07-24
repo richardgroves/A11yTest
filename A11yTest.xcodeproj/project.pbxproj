@@ -24,6 +24,7 @@
 		793EDCD017998CF90051F854 /* A11yContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A11yContainer.h; sourceTree = "<group>"; };
 		793EDCD117998CF90051F854 /* A11yContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A11yContainer.m; sourceTree = "<group>"; };
 		795A86E3179FF50300FAD515 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		795A86E517A0231500FAD515 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		79B5A446178C461E0096B963 /* A11yTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = A11yTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B5A449178C461E0096B963 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		79B5A44B178C461E0096B963 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -57,6 +58,7 @@
 		79B5A43D178C461E0096B963 = {
 			isa = PBXGroup;
 			children = (
+				795A86E517A0231500FAD515 /* README.md */,
 				79B5A44F178C461E0096B963 /* A11yTest */,
 				79B5A448178C461E0096B963 /* Frameworks */,
 				79B5A447178C461E0096B963 /* Products */,
