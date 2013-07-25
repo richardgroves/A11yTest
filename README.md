@@ -30,6 +30,7 @@ To demonstrate the issue:
 * Cycle from the 'Location name' label to the 'Summary area' label
 * Double tap to activate the button
 * Cycle rightwards to go through the 'hourly' columns
+
 End of list indicator is triggered after just a few columns - rest are unreachable
 
 
