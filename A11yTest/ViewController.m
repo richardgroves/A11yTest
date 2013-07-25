@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "A11yContainer.h"
+#import "A11yContainedView.h"
 
 const float kDelayInScrollProcessing = 0.1f;
 
@@ -15,7 +16,7 @@ const int kTagDetailSlotBase = 10;
 
 @interface ViewController ()
 @property (nonatomic, retain) UIScrollView* dayView;
-@property (nonatomic, retain) UILabel* summaryLabel; // Standin for the summary panel
+@property (nonatomic, retain) A11yContainedLabel* summaryLabel; // Standin for the summary panel
 @property (nonatomic, retain) UIView* detailSlotsContainer;
 @end
 
@@ -59,7 +60,7 @@ const int kTagDetailSlotBase = 10;
 	// Main view -> label + (day view -> summary page + detailViewContainer -> N * hourly slots) + tab view
 	
 	// Basic location label - first in a11y ordering 
-	UILabel* locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 150, 30)];
+	A11yContainedLabel* locationLabel = [[A11yContainedLabel alloc] initWithFrame:CGRectMake(0, 20, 150, 30)];
 	locationLabel.text = @"Location name";
 	locationLabel.tag = 1; // A11y ordering
 	[self.view addSubview:locationLabel];
@@ -74,7 +75,7 @@ const int kTagDetailSlotBase = 10;
 	self.dayView.backgroundColor = [UIColor lightGrayColor];
 
 	UIView* summaryPage = [[UIView alloc] initWithFrame:self.dayView.bounds];
-	self.summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 50, 150, 30)];
+	self.summaryLabel = [[A11yContainedLabel alloc] initWithFrame:CGRectMake(50, 50, 150, 30)];
 	self.summaryLabel.text = @"Summary area";
 	self.summaryLabel.tag = 2;
 	self.summaryLabel.accessibilityTraits |= UIAccessibilityTraitButton;
@@ -120,12 +121,12 @@ const int kTagDetailSlotBase = 10;
 	[self.view addSubview:self.dayView];
 		
 	// Add a view after the 'hourly slots' to represent the day tabs
-	UILabel* dayTabsLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, dayViewFrame.origin.y+dayViewFrame.size.height+20.0f, 150.0f, 30.0f)];
+	A11yContainedLabel* dayTabsLabel = [[A11yContainedLabel alloc] initWithFrame:CGRectMake(50, dayViewFrame.origin.y+dayViewFrame.size.height+20.0f, 150.0f, 30.0f)];
 	dayTabsLabel.text = @"Day tabs";
 	dayTabsLabel.tag = kTagDetailSlotBase + numCols + 5; // Make this the last element
 	[self.view addSubview:dayTabsLabel];
 	
-	// Get the view hierarchy correctly sorted - not needed here as the
+	// Get the view hierarchy correctly sorted - not needed here as the views are all setup before being added to self.view
 	//[(A11yContainer*)self.view recheckViews];
 	
 	NSLog(@"Element order: (%d elements) %@", [(A11yContainer*)self.view accessibilityElementCount], [(A11yContainer*)self.view describeElementOrder]);
@@ -180,7 +181,8 @@ const int kTagDetailSlotBase = 10;
 		{
 			CGRect viewFrame = CGRectMake(xPos, yPos, 0.66f*width, 0.66f*height);
 			
-			UIView* nView = [[UIView alloc] initWithFrame:viewFrame];
+			//UIView* nView = [[UIView alloc] initWithFrame:viewFrame];
+			A11yContainedView* nView = [[A11yContainedView alloc] initWithFrame:viewFrame];
 			
 			nView.backgroundColor = [UIColor colorWithRed:(float)i/(float)numCols green:(float)j/(float)numRows blue:0.5f alpha:1.0f];
 			nView.tag = tagNum++;

@@ -60,7 +60,7 @@
 			identifier = [NSString stringWithFormat:@"%@ : %@", identifier, view.accessibilityLabel];
 		}
 		
-		NSString* itemDesc = [NSString stringWithFormat:@"%lld: UIView: %p: %@. Frame: %@", tag, view, identifier ?: [view description], NSStringFromCGRect(view.frame)];
+		NSString* itemDesc = [NSString stringWithFormat:@"%lld: %@: %p: %@. Frame: %@", tag, [view class], view, identifier ?: [view description], NSStringFromCGRect(view.frame)];
 		[identifiers addObject:itemDesc];
 	}
 	
@@ -103,6 +103,10 @@
 	{
 	    if (subview.isAccessibilityElement == YES)
 		{
+			// Set the a11y container on the subview to self if we can (eg using one of our override classes)
+			if ([subview respondsToSelector:@selector(setAccessibilityContainer:)])
+				[(id)subview setAccessibilityContainer:self];
+			
 			[self.accessibilityElements addObject:subview];
 			
 			[self sortElementsIntoOrder];
