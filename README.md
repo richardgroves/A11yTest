@@ -33,6 +33,10 @@ Cycle rightwards to go through the 'hourly' columns
 End of list indicator is triggered after just a few columns - rest are unreachable
 
 
-Comment out line 92 (#define of USE_LOTS_OF_COLUMNS) of ViewController.m to reduce the number of columns below the problem threshold.
+Comment out line 93 (#define of USE_LOTS_OF_COLUMNS) of ViewController.m to reduce the number of columns below the problem threshold.
 Re-do the above test - can now cycle through the pages and get to the 'Day tab' label in the end as intended.
+
+Update 25Jul13: Following advice from Chris on Apple Accessibility Dev list I've made subclasses of UIView and UILabel that can provide an accessibilityContainer value and items that are accessibility elements get that set to the container object on adding
+
+This allows the user to swipe through the full list, but the items no longer scroll into view as the second page is reached, or on going back to the summary page.
 
