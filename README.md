@@ -25,18 +25,20 @@ Hypothesis - there is a category in the MessageUI framework that overrides the s
 Creates a view hierarchy that replicates what we have in the BBC Weather app for each location to demonstrate the problem with not being able to access the later hourly slots with the VO swipe once there are more than a certain number of views in the 'container'
 
 To demonstrate the issue:
-Run the app on a device
-Enable voice over
-Cycle from the 'Location name' label to the 'Summary area' label
-Double tap to activate the button
-Cycle rightwards to go through the 'hourly' columns
+* Run the app on a device
+* Enable voice over
+* Cycle from the 'Location name' label to the 'Summary area' label
+* Double tap to activate the button
+* Cycle rightwards to go through the 'hourly' columns
+
 End of list indicator is triggered after just a few columns - rest are unreachable
+
 
 
 Comment out line 93 (#define of USE_LOTS_OF_COLUMNS) of ViewController.m to reduce the number of columns below the problem threshold.
 Re-do the above test - can now cycle through the pages and get to the 'Day tab' label in the end as intended.
 
-Update 25Jul13: Following advice from Chris on Apple Accessibility Dev list I've made subclasses of UIView and UILabel that can provide an accessibilityContainer value and items that are accessibility elements get that set to the container object on adding
+**Update 25Jul13:** Following advice from Chris on Apple Accessibility Dev list I've made subclasses of UIView and UILabel that can provide an accessibilityContainer value and items that are accessibility elements get that set to the container object on adding
 
 This allows the user to swipe through the full list, but the items no longer scroll into view as the second page is reached, or on going back to the summary page.
 
