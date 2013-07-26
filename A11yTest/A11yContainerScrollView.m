@@ -12,7 +12,6 @@
 // Also has a manual re-scan method for when the user of the view knows the internal state has changed
 
 #import "A11yContainerScrollView.h"
-#import "A11yContainedView.h"
 
 @interface A11yContainerScrollView ()
 @property (strong, nonatomic) NSMutableArray* accessibilityElements;
@@ -104,23 +103,25 @@
 	// If the new subview is a visible accessibilty element add it to the array and then sort the array.
 	if (subview.accessibilityElementsHidden == NO)
 	{
+		// TODO: Sort out this if and remove all the duplication
 	    if (subview.isAccessibilityElement == YES)
 		{
-			// Set the a11y container on the subview to self if we can (eg using one of our override classes)
-			if ([subview respondsToSelector:@selector(setOverride_accessibilityContainer:)])
-				[(id)subview setOverride_accessibilityContainer:self];
-			
 			[self.accessibilityElements addObject:subview];
-			
 			[self sortElementsIntoOrder];
     	}
-		else if ([subview isKindOfClass:[self class]] == NO || // Don't scan down other A11yContainers
-				 [subview respondsToSelector:@selector(accessibilityElementCount)] == NO ||
-				 [subview accessibilityElementCount] == NSIntegerMax) // No something that really supports the UIAccessibilityContainer protocol
+		else if ([subview isKindOfClass:[self class]] == NO && // Don't scan down other A11yContainers
+				 ([subview respondsToSelector:@selector(accessibilityElementCount)] == NO ||
+				  [subview accessibilityElementCount] == NSIntegerMax)) // No something that really supports the UIAccessibilityContainer protocol
 		{
 			// Recursively add the subviews - simple hierarchy where the total mass of tag values have to avoid each other or take their chances
 			for (UIView* sv in subview.subviews)
 				[self checkSubviewForAdding:sv];
+		}
+		else
+		{
+			// This is added the sub-containers as elements in the correct place in the order
+			[self.accessibilityElements addObject:subview];
+			[self sortElementsIntoOrder];
 		}
 	}
 }
@@ -145,14 +146,14 @@
 // Client can call a re-scan on the hierarchy in case sub-views change (didAdd/willRemove only catch direct subviews, not grand child or further) or a11y states (hidden, isElement) change
 - (void)recheckViews
 {
-	NSLog(@"Recheck views: Were %d elements", self.accessibilityElementCount);
+	NSLog(@"Recheck SVviews: Were %d elements", self.accessibilityElementCount);
 	
 	_accessibilityElements = nil;
 	
 	for (UIView* sv in self.subviews)
 		[self checkSubviewForAdding:sv];
 	
-	NSLog(@"Recheck views: Now %d elements", self.accessibilityElementCount);
+	NSLog(@"Recheck SVviews: Now %d elements", self.accessibilityElementCount);
 }
 
 @end

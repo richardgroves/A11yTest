@@ -10,7 +10,6 @@
 		793EDCD217998CF90051F854 /* A11yContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 793EDCD117998CF90051F854 /* A11yContainerView.m */; };
 		7959ED9417A2B4D700794446 /* A11yContainerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7959ED9317A2B4D700794446 /* A11yContainerScrollView.m */; };
 		795A86E4179FF50300FAD515 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 795A86E3179FF50300FAD515 /* MessageUI.framework */; };
-		795A86E817A158BD00FAD515 /* A11yContainedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 795A86E717A158BD00FAD515 /* A11yContainedView.m */; };
 		79B5A44A178C461E0096B963 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B5A449178C461E0096B963 /* UIKit.framework */; };
 		79B5A44C178C461E0096B963 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B5A44B178C461E0096B963 /* Foundation.framework */; };
 		79B5A454178C461E0096B963 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79B5A452178C461E0096B963 /* InfoPlist.strings */; };
@@ -29,8 +28,6 @@
 		7959ED9317A2B4D700794446 /* A11yContainerScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A11yContainerScrollView.m; sourceTree = "<group>"; };
 		795A86E3179FF50300FAD515 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		795A86E517A0231500FAD515 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		795A86E617A158BD00FAD515 /* A11yContainedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A11yContainedView.h; sourceTree = "<group>"; };
-		795A86E717A158BD00FAD515 /* A11yContainedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A11yContainedView.m; sourceTree = "<group>"; };
 		79B5A446178C461E0096B963 /* A11yTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = A11yTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B5A449178C461E0096B963 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		79B5A44B178C461E0096B963 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -100,8 +97,6 @@
 				793EDCD117998CF90051F854 /* A11yContainerView.m */,
 				7959ED9217A2B4D700794446 /* A11yContainerScrollView.h */,
 				7959ED9317A2B4D700794446 /* A11yContainerScrollView.m */,
-				795A86E617A158BD00FAD515 /* A11yContainedView.h */,
-				795A86E717A158BD00FAD515 /* A11yContainedView.m */,
 				79B5A450178C461E0096B963 /* Supporting Files */,
 			);
 			path = A11yTest;
@@ -190,7 +185,6 @@
 				79B5A45A178C461E0096B963 /* AppDelegate.m in Sources */,
 				79B5A463178C461E0096B963 /* ViewController.m in Sources */,
 				793EDCD217998CF90051F854 /* A11yContainerView.m in Sources */,
-				795A86E817A158BD00FAD515 /* A11yContainedView.m in Sources */,
 				7959ED9417A2B4D700794446 /* A11yContainerScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

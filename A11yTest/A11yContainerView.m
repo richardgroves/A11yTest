@@ -10,7 +10,6 @@
 // Also has a manual re-scan method for when the user of the view knows the internal state has changed
 
 #import "A11yContainerView.h"
-#import "A11yContainedView.h"
 
 @interface A11yContainerView ()
 @property (strong, nonatomic) NSMutableArray* accessibilityElements;
@@ -102,14 +101,10 @@
 	// If the new subview is a visible accessibilty element add it to the array and then sort the array.
 	if (subview.accessibilityElementsHidden == NO)
 	{
+		// TODO: Sort out this if and remove all the duplication
 	    if (subview.isAccessibilityElement == YES)
 		{
-			// Set the a11y container on the subview to self if we can (eg using one of our override classes)
-			if ([subview respondsToSelector:@selector(setOverride_accessibilityContainer:)])
-				[(id)subview setOverride_accessibilityContainer:self];
-			
 			[self.accessibilityElements addObject:subview];
-			
 			[self sortElementsIntoOrder];
     	}
 		else if ([subview isKindOfClass:[self class]] == NO && // Don't scan down other A11yContainers
@@ -122,8 +117,8 @@
 		}
 		else
 		{
+			// This is added the sub-containers as elements in the correct place in the order
 			[self.accessibilityElements addObject:subview];
-			
 			[self sortElementsIntoOrder];
 		}
 	}
