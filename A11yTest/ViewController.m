@@ -61,6 +61,9 @@ const int kTagDetailSlotBase = 10;
 	
 	// Replicate day view hierarchy
 	// Main view -> label + (day view -> summary page + detailViewContainer -> N * hourly slots) + tab view
+	// Following conversations with Chris on Apple dev list view hierarchy is:
+	// Main view (a11y container) -> label + (day view (a11y scroll container) -> summary page + N * Hourly slots on other pages) + tab view label
+	
 	// Basic location label - first in a11y ordering
 	UILabel* locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 150, 30)];
 	locationLabel.text = @"Location name";
@@ -98,7 +101,7 @@ const int kTagDetailSlotBase = 10;
 	
 	// Total a11y elements in the scene is 3 + num columns
 #ifdef USE_LOTS_OF_COLUMNS
-	const int numCols = 24; // At 24 we can't even get to the end of the first page!
+	const int numCols = 24; // Now (26Jul) works for 24 columns!!! // At 24 we can't even get to the end of the first page!
 #else
 	const int numCols = 10; // At 10 it works fine - cycles through multiple pages, ends up on Day tabs label
 #endif
@@ -246,7 +249,7 @@ const int kTagDetailSlotBase = 10;
 			
 			// Re-scan the hierarchy as what views are hidden or not from VO might have changed
 			[self.dayView recheckViews];
-			[(A11yContainerView*)self.view recheckViews];
+			[(A11yContainerView*)self.view recheckViews]; // Not sure this is needed as the content of this doesn't change now
 			NSLog(@"Exposing columns: Element order: (%d elements) %@", [(A11yContainerView*)self.view accessibilityElementCount], [(A11yContainerView*)self.view describeElementOrder]);
 		}
 	}
@@ -263,10 +266,10 @@ const int kTagDetailSlotBase = 10;
 
 			// Re-scan the hierarchy as what views are hidden or not from VO will have changed
 			[self.dayView recheckViews];
-			[(A11yContainerView*)self.view recheckViews];
+			[(A11yContainerView*)self.view recheckViews]; // Not sure this is needed as the content of this doesn't change now
 			NSLog(@"Hiding columns: Element order: (%d elements) %@", [(A11yContainerView*)self.view accessibilityElementCount], [(A11yContainerView*)self.view describeElementOrder]);
 
-			// Choose main area of the summary view to be VO focus
+			// Set main area of the summary view to be VO focus
 			UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.summaryLabel);
 		}
 	}	
