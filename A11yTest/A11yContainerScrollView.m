@@ -1,21 +1,24 @@
 //
-//  A11yContainer.m
+//  A11yContainerView.m
 //  A11yTest
 //
 //  Created by Richard Groves on 19/07/2013.
 //  Copyright (c) 2013 NoodlFroot Ltd. All rights reserved.
 //
 
-// UIView subclass that implements the UIAccessibilityContainer protocol by trapping add/remove subview to scan the added items
+// NB: Identical in code to the A11ContainerView class - just a different base class. Just when you need multiple inheritance it isn't there...
+
+// UIScrollView subclass that implements the UIAccessibilityContainer protocol by trapping add/remove subview to scan the added items
 // Also has a manual re-scan method for when the user of the view knows the internal state has changed
 
-#import "A11yContainer.h"
+#import "A11yContainerScrollView.h"
+#import "A11yContainedView.h"
 
-@interface A11yContainer ()
+@interface A11yContainerScrollView ()
 @property (strong, nonatomic) NSMutableArray* accessibilityElements;
 @end
 
-@implementation A11yContainer
+@implementation A11yContainerScrollView
 
 // Lazy loading accessor, avoids instantiaton in initWithCoder and initWithFrame and init.
 -(NSMutableArray *)accessibilityElements
@@ -104,14 +107,16 @@
 	    if (subview.isAccessibilityElement == YES)
 		{
 			// Set the a11y container on the subview to self if we can (eg using one of our override classes)
-			if ([subview respondsToSelector:@selector(setAccessibilityContainer:)])
-				[(id)subview setAccessibilityContainer:self];
+			if ([subview respondsToSelector:@selector(setOverride_accessibilityContainer:)])
+				[(id)subview setOverride_accessibilityContainer:self];
 			
 			[self.accessibilityElements addObject:subview];
 			
 			[self sortElementsIntoOrder];
     	}
-		else
+		else if ([subview isKindOfClass:[self class]] == NO || // Don't scan down other A11yContainers
+				 [subview respondsToSelector:@selector(accessibilityElementCount)] == NO ||
+				 [subview accessibilityElementCount] == NSIntegerMax) // No something that really supports the UIAccessibilityContainer protocol
 		{
 			// Recursively add the subviews - simple hierarchy where the total mass of tag values have to avoid each other or take their chances
 			for (UIView* sv in subview.subviews)

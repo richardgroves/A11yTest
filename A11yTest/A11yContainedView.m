@@ -10,8 +10,18 @@
 
 @implementation A11yContainedView
 
+- (id)accessibilityContainer
+{
+	return self.override_accessibilityContainer;
+}
+
 @end
 
 @implementation A11yContainedLabel
+
+- (id)accessibilityContainer
+{
+	return self.override_accessibilityContainer;
+}
 
 @end

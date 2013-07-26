@@ -10,12 +10,12 @@
 
 @interface A11yContainedView : UIView
 
-@property (nonatomic, assign) id accessibilityContainer;
+@property (nonatomic, assign) id override_accessibilityContainer;
 
 @end
 
 @interface A11yContainedLabel : UILabel
 
-@property (nonatomic, assign) id accessibiilityContainer;
+@property (nonatomic, assign) id override_accessibilityContainer;
 
 @end

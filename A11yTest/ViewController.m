@@ -7,7 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "A11yContainer.h"
+#import "A11yContainerView.h"
+#import "A11yContainerScrollView.h"
+
 #import "A11yContainedView.h"
 
 const float kDelayInScrollProcessing = 0.1f;
@@ -15,16 +17,17 @@ const float kDelayInScrollProcessing = 0.1f;
 const int kTagDetailSlotBase = 10;
 
 @interface ViewController ()
-@property (nonatomic, retain) UIScrollView* dayView;
+@property (nonatomic, retain) A11yContainerScrollView* dayView;
 @property (nonatomic, retain) A11yContainedLabel* summaryLabel; // Standin for the summary panel
-@property (nonatomic, retain) UIView* detailSlotsContainer;
+@property (nonatomic, retain) A11yContainerView* detailSlotsContainer;
 @end
 
 @implementation ViewController
 
 - (void)loadView
 {
-	self.view = [[A11yContainer alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+	self.view = [[A11yContainerView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+//	self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
 }
 
 - (void)viewDidLoad
@@ -58,22 +61,28 @@ const int kTagDetailSlotBase = 10;
 	
 	// Replicate day view hierarchy
 	// Main view -> label + (day view -> summary page + detailViewContainer -> N * hourly slots) + tab view
-	
-	// Basic location label - first in a11y ordering 
+	// Basic location label - first in a11y ordering
 	A11yContainedLabel* locationLabel = [[A11yContainedLabel alloc] initWithFrame:CGRectMake(0, 20, 150, 30)];
 	locationLabel.text = @"Location name";
 	locationLabel.tag = 1; // A11y ordering
 	[self.view addSubview:locationLabel];
 	
+	
+	NSLog(@"Self view can handle accessibilityElementCount : %@ %d", [self.view respondsToSelector:@selector(accessibilityElementCount)] ? @"YES" : @"NO", [self.view accessibilityElementCount]);	
+	NSLog(@"locationLabel can handle accessibilityElementCount : %@ %X %X", [locationLabel respondsToSelector:@selector(accessibilityElementCount)] ? @"YES" : @"NO", [locationLabel accessibilityElementCount], (NSInteger)NSIntegerMax);
+	
+	
 	// Build our fundamental scroll view that holds the summary view and the detail slot views
 	CGRect dayViewFrame = self.view.bounds;
 	dayViewFrame.size.height *= 0.75f;
 	dayViewFrame.origin.y = 80.0f;
-	self.dayView = [[UIScrollView alloc] initWithFrame:dayViewFrame];
+	self.dayView = [[A11yContainerScrollView alloc] initWithFrame:dayViewFrame];
 	self.dayView.delegate = self;
 	self.dayView.pagingEnabled = YES;
 	self.dayView.backgroundColor = [UIColor lightGrayColor];
 
+	self.dayView.tag = 2;
+	
 	UIView* summaryPage = [[UIView alloc] initWithFrame:self.dayView.bounds];
 	self.summaryLabel = [[A11yContainedLabel alloc] initWithFrame:CGRectMake(50, 50, 150, 30)];
 	self.summaryLabel.text = @"Summary area";
@@ -105,18 +114,30 @@ const int kTagDetailSlotBase = 10;
 	if (numPages*colsPerPage < numCols)
 		numPages++;
 	
-	self.detailSlotsContainer = [[UIView alloc] initWithFrame:CGRectMake(self.dayView.bounds.size.width, 50, self.dayView.frame.size.width*numPages, self.dayView.frame.size.height*0.5f)];
+	CGRect detailSlotsFrame = CGRectMake(self.dayView.bounds.size.width, 50, self.dayView.frame.size.width*numPages, self.dayView.frame.size.height*0.5f);
+	self.detailSlotsContainer = [[A11yContainerView alloc] initWithFrame:detailSlotsFrame];
+	self.detailSlotsContainer.tag = 3; // Order it appears in VO list???
+	
+//	[self buildItemsOntoView:self.detailSlotsContainer
+//						area:self.detailSlotsContainer.bounds
+//						cols:numCols
+//					startTag:kTagDetailSlotBase];
+//	
+	self.detailSlotsContainer.accessibilityElementsHidden = YES; // These are initially hidden until the user taps to them from the summary button
 
-	[self buildItemsOntoView:self.detailSlotsContainer
-						area:self.detailSlotsContainer.bounds
+	//[self.dayView addSubview:self.detailSlotsContainer];
+	
+	[self buildItemsOntoView:self.dayView
+						area:detailSlotsFrame
 						cols:numCols
 					startTag:kTagDetailSlotBase];
 	
-	self.detailSlotsContainer.accessibilityElementsHidden = YES; // These are initially hidden until the user taps to them from the summary button
+	[self setColumnViewsHiddenState:YES];
+	self.dayView.contentSize = CGSizeMake(summaryPage.frame.size.width + detailSlotsFrame.size.width, self.dayView.frame.size.height);
 	
-	[self.dayView addSubview:self.detailSlotsContainer];
-	
-	self.dayView.contentSize = CGSizeMake(summaryPage.frame.size.width + self.detailSlotsContainer.frame.size.width, self.dayView.frame.size.height);
+	// Reprocess the hierarchy
+	[self.dayView recheckViews];
+	NSLog(@"dayView: Element order: (%d elements) %@", [self.dayView accessibilityElementCount], [self.dayView describeElementOrder]);
 	
 	[self.view addSubview:self.dayView];
 		
@@ -126,10 +147,10 @@ const int kTagDetailSlotBase = 10;
 	dayTabsLabel.tag = kTagDetailSlotBase + numCols + 5; // Make this the last element
 	[self.view addSubview:dayTabsLabel];
 	
-	// Get the view hierarchy correctly sorted - not needed here as the views are all setup before being added to self.view
-	//[(A11yContainer*)self.view recheckViews];
+	// Get the view hierarchy correctly sorted - not needed here??? as the views are all setup before being added to self.view
+	[(A11yContainerView*)self.view recheckViews];
 	
-	NSLog(@"Element order: (%d elements) %@", [(A11yContainer*)self.view accessibilityElementCount], [(A11yContainer*)self.view describeElementOrder]);
+	NSLog(@"Main view: Element order: (%d elements) %@", [(A11yContainerView*)self.view accessibilityElementCount], [(A11yContainerView*)self.view describeElementOrder]);
 }
 
 - (void)didReceiveMemoryWarning
@@ -153,10 +174,20 @@ const int kTagDetailSlotBase = 10;
 		{
 			//NSLog(@"summaryTapped: Setting a11y indicator now");
 			// Set the a11y focus to the first detail slot
-			UIView* slot0 = [self.detailSlotsContainer viewWithTag:kTagDetailSlotBase + 0];
+			//UIView* slot0 = [self.detailSlotsContainer viewWithTag:kTagDetailSlotBase + 0];
+			UIView* slot0 = [self.dayView viewWithTag:kTagDetailSlotBase + 0];
 			UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, slot0); // Indicate that a medium level amount of screen change has happened
 			//NSLog(@"summaryTapped: Done post notification");
 		});
+	}
+}
+
+- (void)setColumnViewsHiddenState:(BOOL)value
+{
+	for (UIView* view in self.dayView.subviews)
+	{
+		if (view.tag>=kTagDetailSlotBase)
+			view.accessibilityElementsHidden = value;
 	}
 }
 
@@ -230,25 +261,37 @@ const int kTagDetailSlotBase = 10;
 	{
 		// On a detailed slot page - enable the a11y elements for the detail slots
         // NOTE: could use previous state of this (aEH) flag to see if we've just come here from summary
-		self.detailSlotsContainer.accessibilityElementsHidden = NO;
+		if (self.detailSlotsContainer.accessibilityElementsHidden == YES)
+		{
+			self.detailSlotsContainer.accessibilityElementsHidden = NO;
+			[self setColumnViewsHiddenState:NO];
+			
+			// Re-scan the hierarchy as what views are hidden or not from VO might have changed
+			[self.dayView recheckViews];
+			[(A11yContainerView*)self.view recheckViews];
+			NSLog(@"Exposing columns: Element order: (%d elements) %@", [(A11yContainerView*)self.view accessibilityElementCount], [(A11yContainerView*)self.view describeElementOrder]);
+		}
 	}
 	else
 	{
-		// Disable the a11y elements for the detail slots
-		self.detailSlotsContainer.accessibilityElementsHidden = YES;
-		
-		BOOL doAnimation = UIAccessibilityIsVoiceOverRunning() == NO;
-		[self.dayView setContentOffset:CGPointMake(0.0f, 0.0f) animated:doAnimation]; // Reset it back to the full page 0 being on screen
-		[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(scrollViewDidEndScrollingAnimation:) object:nil]; // Stop the repeat processing that doing the setContentOffset causes
+		if (self.detailSlotsContainer.accessibilityElementsHidden == NO)
+		{
+			// Disable the a11y elements for the detail slots
+			self.detailSlotsContainer.accessibilityElementsHidden = YES;
+			[self setColumnViewsHiddenState:YES];
 
-		// Choose main area of the summary view to be VO focus
-		UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.summaryLabel);
-	}
-	
-	// Re-scan the hierarchy as what views are hidden or not from VO might have changed
-	[(A11yContainer*)self.view recheckViews];
-	
-	NSLog(@"Element order: (%d elements) %@", [(A11yContainer*)self.view accessibilityElementCount], [(A11yContainer*)self.view describeElementOrder]);
+			BOOL doAnimation = UIAccessibilityIsVoiceOverRunning() == NO;
+			[self.dayView setContentOffset:CGPointMake(0.0f, 0.0f) animated:doAnimation]; // Reset it back to the full page 0 being on screen
+			[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(scrollViewDidEndScrollingAnimation:) object:nil]; // Stop the repeat processing that doing the setContentOffset causes
+
+			// Choose main area of the summary view to be VO focus
+			UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.summaryLabel);
+			// Re-scan the hierarchy as what views are hidden or not from VO might have changed
+			[self.dayView recheckViews];
+			[(A11yContainerView*)self.view recheckViews];
+			NSLog(@"Hiding columns: Element order: (%d elements) %@", [(A11yContainerView*)self.view accessibilityElementCount], [(A11yContainerView*)self.view describeElementOrder]);
+		}
+	}	
 }
 
 @end

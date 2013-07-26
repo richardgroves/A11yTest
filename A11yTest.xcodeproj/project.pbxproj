@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		793EDCD217998CF90051F854 /* A11yContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 793EDCD117998CF90051F854 /* A11yContainer.m */; };
+		793EDCD217998CF90051F854 /* A11yContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 793EDCD117998CF90051F854 /* A11yContainerView.m */; };
+		7959ED9417A2B4D700794446 /* A11yContainerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7959ED9317A2B4D700794446 /* A11yContainerScrollView.m */; };
 		795A86E4179FF50300FAD515 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 795A86E3179FF50300FAD515 /* MessageUI.framework */; };
 		795A86E817A158BD00FAD515 /* A11yContainedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 795A86E717A158BD00FAD515 /* A11yContainedView.m */; };
 		79B5A44A178C461E0096B963 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B5A449178C461E0096B963 /* UIKit.framework */; };
@@ -22,8 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		793EDCD017998CF90051F854 /* A11yContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A11yContainer.h; sourceTree = "<group>"; };
-		793EDCD117998CF90051F854 /* A11yContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A11yContainer.m; sourceTree = "<group>"; };
+		793EDCD017998CF90051F854 /* A11yContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A11yContainerView.h; sourceTree = "<group>"; };
+		793EDCD117998CF90051F854 /* A11yContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A11yContainerView.m; sourceTree = "<group>"; };
+		7959ED9217A2B4D700794446 /* A11yContainerScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A11yContainerScrollView.h; sourceTree = "<group>"; };
+		7959ED9317A2B4D700794446 /* A11yContainerScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A11yContainerScrollView.m; sourceTree = "<group>"; };
 		795A86E3179FF50300FAD515 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		795A86E517A0231500FAD515 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		795A86E617A158BD00FAD515 /* A11yContainedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A11yContainedView.h; sourceTree = "<group>"; };
@@ -93,8 +96,10 @@
 				79B5A459178C461E0096B963 /* AppDelegate.m */,
 				79B5A461178C461E0096B963 /* ViewController.h */,
 				79B5A462178C461E0096B963 /* ViewController.m */,
-				793EDCD017998CF90051F854 /* A11yContainer.h */,
-				793EDCD117998CF90051F854 /* A11yContainer.m */,
+				793EDCD017998CF90051F854 /* A11yContainerView.h */,
+				793EDCD117998CF90051F854 /* A11yContainerView.m */,
+				7959ED9217A2B4D700794446 /* A11yContainerScrollView.h */,
+				7959ED9317A2B4D700794446 /* A11yContainerScrollView.m */,
 				795A86E617A158BD00FAD515 /* A11yContainedView.h */,
 				795A86E717A158BD00FAD515 /* A11yContainedView.m */,
 				79B5A450178C461E0096B963 /* Supporting Files */,
@@ -184,8 +189,9 @@
 				79B5A456178C461E0096B963 /* main.m in Sources */,
 				79B5A45A178C461E0096B963 /* AppDelegate.m in Sources */,
 				79B5A463178C461E0096B963 /* ViewController.m in Sources */,
-				793EDCD217998CF90051F854 /* A11yContainer.m in Sources */,
+				793EDCD217998CF90051F854 /* A11yContainerView.m in Sources */,
 				795A86E817A158BD00FAD515 /* A11yContainedView.m in Sources */,
+				7959ED9417A2B4D700794446 /* A11yContainerScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

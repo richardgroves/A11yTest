@@ -1,5 +1,5 @@
 //
-//  A11yContainerTest.h
+//  A11yContainerView.h
 //  A11yTest
 //
 //  Created by Richard Groves on 19/07/2013.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface A11yContainer : UIView
+@interface A11yContainerView : UIView
 
 - (void)recheckViews;
 - (NSArray*)describeElementOrder;
