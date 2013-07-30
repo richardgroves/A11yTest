@@ -262,12 +262,16 @@
 		79B5A46A178C461E0096B963 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Richard Groves (F7Q7S375H9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Richard Groves (F7Q7S375H9)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "A11yTest/A11yTest-Prefix.pch";
 				INFOPLIST_FILE = "A11yTest/A11yTest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CFF14416-A008-44F1-AD49-FB2A7917B51B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CFF14416-A008-44F1-AD49-FB2A7917B51B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -275,12 +279,16 @@
 		79B5A46B178C461E0096B963 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Richard Groves (F7Q7S375H9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Richard Groves (F7Q7S375H9)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "A11yTest/A11yTest-Prefix.pch";
 				INFOPLIST_FILE = "A11yTest/A11yTest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CFF14416-A008-44F1-AD49-FB2A7917B51B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CFF14416-A008-44F1-AD49-FB2A7917B51B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
